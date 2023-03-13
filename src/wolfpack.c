@@ -11,14 +11,14 @@
 
 void print_packet_sf(const unsigned char *packet) {
     // print [source address - 5 bytes]
-    for (int j=0; j<5; j++) {
+    for (unsigned int j=0; j<5; j++) {
         printf("%02x", *packet);
         packet++;
     }
     printf("\n");
 
     // print [destination address - 5 bytes]
-    for (int j=0; j<5; j++) {
+    for (unsigned int j=0; j<5; j++) {
         printf("%02x", *packet);
         packet++;
     }
@@ -33,14 +33,14 @@ void print_packet_sf(const unsigned char *packet) {
     packet++;
 
     // print [fragment offset - 3 bytes]
-    for (int j=0; j<3; j++) {
+    for (unsigned int j=0; j<3; j++) {
         printf("%02x", *packet);
         packet++;
     }
     printf("\n");
 
     // print [flags - 2 bytes]
-    for (int j=0; j<2; j++) {
+    for (unsigned int j=0; j<2; j++) {
         printf("%02x", *packet);
         packet++;
     }
@@ -48,7 +48,7 @@ void print_packet_sf(const unsigned char *packet) {
 
     // print [total length - 3 bytes]
     unsigned int total_byte_length = 0;
-    for (int j=0; j<3; j++) {
+    for (unsigned int j=0; j<3; j++) {
         printf("%02x", *packet);
         
         // add new byte to compute byte length
@@ -60,7 +60,7 @@ void print_packet_sf(const unsigned char *packet) {
     printf("\n");
 
     // print [checksum - 4 bytes]
-    for (int j=0; j<4; j++) {
+    for (unsigned int j=0; j<4; j++) {
         printf("%02x", *packet);
         packet++;
     }
@@ -68,7 +68,7 @@ void print_packet_sf(const unsigned char *packet) {
 
     unsigned int payload_byte_length = total_byte_length - 24;
     // print [payload]
-    for (int j=0; j<payload_byte_length; j++) {
+    for (unsigned int j=0; j<payload_byte_length; j++) {
         printf("%c", *packet);
         packet++;
     }
@@ -146,7 +146,7 @@ unsigned int checksum_sf(const unsigned char *packet) {
 
     unsigned long temp = 0;
     // add [source address - 5 bytes]
-    for (int j=0; j<5; j++) {
+    for (unsigned int j=0; j<5; j++) {
         temp<<= 8;
         temp|= *packet;
         packet++;
@@ -155,7 +155,7 @@ unsigned int checksum_sf(const unsigned char *packet) {
 
     // add [destination address - 5 bytes]
     temp = 0;
-    for (int j=0; j<5; j++) {
+    for (unsigned int j=0; j<5; j++) {
         temp<<= 8;
         temp|= *packet;
         packet++;
@@ -172,7 +172,7 @@ unsigned int checksum_sf(const unsigned char *packet) {
 
     // add [fragment offset - 3 bytes]
     temp = 0;
-    for (int j=0; j<3; j++) {
+    for (unsigned int j=0; j<3; j++) {
         temp<<= 8;
         temp|= *packet;
         packet++;
@@ -181,7 +181,7 @@ unsigned int checksum_sf(const unsigned char *packet) {
 
     // add [flags - 2 bytes]
     temp = 0;
-    for (int j=0; j<2; j++) {
+    for (unsigned int j=0; j<2; j++) {
         temp<<= 8;
         temp|= *packet;
         packet++;
@@ -190,7 +190,7 @@ unsigned int checksum_sf(const unsigned char *packet) {
 
     // add [total length - 3 bytes]
     temp = 0;
-    for (int j=0; j<3; j++) {
+    for (unsigned int j=0; j<3; j++) {
         temp<<= 8;
         temp|= *packet;
         packet++;
