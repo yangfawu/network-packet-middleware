@@ -6,8 +6,8 @@ int main() {
     unsigned char *packets_act[4];
     unsigned int packets_len = 4;
     unsigned int max_payload = 17;
-    unsigned long src_addr = 5000000000;
-    unsigned long dest_addr = 16500000000;
+    unsigned long src_addr = 5000000000L;
+    unsigned long dest_addr = 16500000000L;
     unsigned short encryption = 265;
     unsigned int num_packets_exp = 4;
     packetize_sf(msg, packets_act, packets_len, max_payload, src_addr, dest_addr, encryption);
